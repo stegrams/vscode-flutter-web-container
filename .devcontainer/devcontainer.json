@@ -1,0 +1,35 @@
+{
+	"name": "Flutter",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"USER": "flutterc",
+			// "stable", "beta", "dev", "master", or check https://github.com/flutter/flutter 
+			// for a list of brances and tags.
+			// Flutter developers will release the latest features to the master channel first. 
+			// As these features stabilize, they will first get promoted to the dev channel, 
+			// then to beta, and finally to the stable channel.
+			// A very useful link: https://flutter.dev/docs/development/tools/sdk/releases
+			"FLUTTER_REL": "2.2.3"
+		}
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"dart-code.dart-code",
+		"dart-code.flutter"
+	],
+	"runArgs": [
+		"--name",
+		"flutter_web",
+		// Chance the web port at run time instead of build time
+		"--env",
+		"FLUTTER_WEB_PORT=8080",
+	],
+	"portsAttributes": {
+		"8080": {
+			"label": "Flutter Web"
+		},
+	},
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "flutterc"
+}
